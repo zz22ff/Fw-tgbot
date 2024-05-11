@@ -35,9 +35,8 @@ def echo(update: Update, context: CallbackContext) -> None:
                 context.bot.forward_message(chat_id=dest_channel_id, from_chat_id=message.chat_id, message_id=message.message_id)
 
 def main() -> None:
-    # 创建 Bot 对象
-    bot = Bot(token=TOKEN)
-    updater = Updater(bot=bot)
+    # 创建 Updater 对象
+    updater = Updater(token=TOKEN, use_context=True)
 
     # 获取调度器对象
     dispatcher = updater.dispatcher
