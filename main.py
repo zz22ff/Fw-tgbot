@@ -38,8 +38,9 @@ def main() -> None:
     # 升级 python-telegram-bot 模块
     os.system('pip install --upgrade python-telegram-bot')
     
-    # 创建 Updater 对象
-    updater = Updater(TOKEN)
+    # 创建 Bot 对象
+    bot = Bot(token=TOKEN)
+    updater = Updater(bot=bot, update_queue=Queue())
 
     # 获取调度器对象
     dispatcher = updater.dispatcher
