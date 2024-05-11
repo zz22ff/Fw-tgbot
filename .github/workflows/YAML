@@ -22,7 +22,7 @@ jobs:
         file: ./Dockerfile
         platforms: linux/amd64
         push: true
-        tags: zz22ff/mytelegrambot:latest
+        tags: zz22ff/fw-tgbot:latest
       env:
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
