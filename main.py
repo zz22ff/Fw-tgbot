@@ -36,7 +36,7 @@ def echo(update: Update, context: CallbackContext) -> None:
 
 def main() -> None:
     # 创建 Updater 对象
-    updater = Updater(token=TOKEN, use_context=True)
+    updater = Updater(TOKEN, use_context=True)
 
     # 获取调度器对象
     dispatcher = updater.dispatcher
