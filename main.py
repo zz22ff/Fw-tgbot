@@ -35,6 +35,9 @@ def echo(update: Update, context: CallbackContext) -> None:
                 context.bot.forward_message(chat_id=dest_channel_id, from_chat_id=message.chat_id, message_id=message.message_id)
 
 def main() -> None:
+    # 升级 python-telegram-bot 模块
+    os.system('pip install --upgrade python-telegram-bot')
+    
     # 创建 Updater 对象
     updater = Updater(TOKEN)
 
