@@ -1,6 +1,6 @@
 # Fw-tgbot
 自用telegram自动监听并转发的机器人\
-安装运行命令
+安装运行命令，测试
 ```
 docker run -d --name Fw-tgbot \
     -e BOT_TOKEN=YOUR_BOT_TOKEN \
