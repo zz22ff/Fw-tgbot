@@ -1,7 +1,6 @@
 import os
-from telegram import Update
-from telegram.ext import Updater, CommandHandler, MessageHandler, CallbackContext
-from telegram.ext import filters
+from telegram import Bot, Update
+from telegram.ext import Updater, CommandHandler, MessageHandler, CallbackContext, filters
 
 # 通过环境变量获取你的 Bot 令牌
 TOKEN = os.environ.get('BOT_TOKEN')
