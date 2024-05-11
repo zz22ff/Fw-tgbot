@@ -1,6 +1,7 @@
 import os
-from telegram import Bot, Update
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
+from telegram import Update
+from telegram.ext import Updater, CommandHandler, MessageHandler, CallbackContext
+from telegram.ext import filters
 
 # 通过环境变量获取你的 Bot 令牌
 TOKEN = os.environ.get('BOT_TOKEN')
@@ -12,7 +13,7 @@ SOURCE_CHANNEL_IDS = os.environ.get('SOURCE_CHANNEL_IDS').split(',') if os.envir
 DESTINATION_CHANNEL_IDS = os.environ.get('DESTINATION_CHANNEL_IDS').split(',') if os.environ.get('DESTINATION_CHANNEL_IDS') else []
 
 # 设置要筛选的关键词
-KEYWORDS = ['keyword1', 'keyword2', 'keyword3']
+KEYWORDS = os.environ.get('KEYWORDS', '').split(',') if os.environ.get('KEYWORDS') else []
 
 # 处理 /start 命令的函数
 def start(update: Update, context: CallbackContext) -> None:
@@ -35,8 +36,7 @@ def echo(update: Update, context: CallbackContext) -> None:
 
 def main() -> None:
     # 创建 Bot 对象
-    bot = Bot(token=TOKEN)
-    updater = Updater(bot=bot)
+    updater = Updater(token=TOKEN)
 
     # 获取调度器和调度处理程序
     dispatcher = updater.dispatcher
@@ -45,7 +45,7 @@ def main() -> None:
     dispatcher.add_handler(CommandHandler("start", start))
 
     # 添加消息处理程序
-    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, echo))
+    dispatcher.add_handler(MessageHandler(filters.TEXT & ~filters.command, echo))
 
     # 启动 Bot
     updater.start_polling()
