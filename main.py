@@ -37,9 +37,9 @@ def echo(update: Update, context: CallbackContext) -> None:
 def main() -> None:
     # 创建 Bot 对象
     bot = Bot(token=TOKEN)
-    updater = Updater(bot=bot, update_queue=Queue())
+    updater = Updater(bot=bot)
 
-    # 获取调度器和调度处理程序
+    # 获取调度器对象
     dispatcher = updater.dispatcher
 
     # 添加命令处理程序
