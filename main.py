@@ -36,7 +36,8 @@ def echo(update: Update, context: CallbackContext) -> None:
 
 def main() -> None:
     # 创建 Bot 对象
-    updater = Updater(token=TOKEN)
+    bot = Bot(token=TOKEN)
+    updater = Updater(bot=bot)
 
     # 获取调度器和调度处理程序
     dispatcher = updater.dispatcher
