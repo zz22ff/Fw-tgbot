@@ -1,6 +1,7 @@
 import os
-from telegram import Bot, Update
+from telegram import Update
 from telegram.ext import Updater, CommandHandler, MessageHandler, CallbackContext, filters
+from queue import Queue
 
 # 通过环境变量获取你的 Bot 令牌
 TOKEN = os.environ.get('BOT_TOKEN')
@@ -36,7 +37,7 @@ def echo(update: Update, context: CallbackContext) -> None:
 def main() -> None:
     # 创建 Bot 对象
     bot = Bot(token=TOKEN)
-    updater = Updater(bot=bot)
+    updater = Updater(bot=bot, update_queue=Queue())
 
     # 获取调度器和调度处理程序
     dispatcher = updater.dispatcher
