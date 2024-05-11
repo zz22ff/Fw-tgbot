@@ -1,5 +1,5 @@
 import os
-from telegram import Update
+from telegram import Bot, Update
 from telegram.ext import Updater, CommandHandler, MessageHandler, CallbackContext, filters
 from queue import Queue
 
