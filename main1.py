@@ -1,3 +1,5 @@
+#!/usr/local/bin/python
+
 from dotenv import load_dotenv
 from telethon import TelegramClient, events
 import os
