@@ -1,6 +1,5 @@
 from dotenv import load_dotenv
-from telethon import TelegramClient, events, sync
-from telethon.sessions import StringSession
+from telethon import TelegramClient, events
 import os
 
 # 指定容器内部的 .env 文件路径
@@ -14,8 +13,8 @@ api_hash = os.getenv('API_HASH')
 # 从环境变量中获取电话号码
 phone_number = os.getenv('PHONE_NUMBER')
 
-# 创建Telegram客户端实例，不立即开始
-client = TelegramClient(StringSession(), api_id, api_hash, auto_reconnect=False)
+# 创建Telegram客户端实例
+client = TelegramClient(phone_number, api_id, api_hash)
 
 # 从环境变量中获取要监听的频道ID列表
 source_channel_ids = os.getenv('SOURCE_CHANNEL_IDS', '').split(',')
@@ -34,16 +33,11 @@ async def handler(event):
         for destination_channel_id in destination_channel_ids:
             await event.message.forward_to(destination_channel_id)
 
-@client.on(events.NewMessage(pattern='登录'))
-async def login_handler(event):
-    # 当接收到“登录”命令时，开始登录流程
-    if event.raw_text == '登录':
-        await client.start(phone=phone_number)
-        print('登录成功！正在监听...')
-
 def main():
-    with client:
-        client.run_until_disconnected()
+    # 连接到Telegram
+    client.start(phone=phone_number)
+    print('正在监听...')
+    client.run_until_disconnected()
 
 if __name__ == '__main__':
     main()
