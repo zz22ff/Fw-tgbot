@@ -1,14 +1,14 @@
-# 基于 Python 的官方镜像构建
-FROM python:3.9-slim
+# 使用官方Python镜像作为基础镜像
+FROM python:3.8-slim
 
 # 设置工作目录
 WORKDIR /app
 
-# 复制项目文件到工作目录
-COPY . .
+# 将脚本复制到容器中
+COPY . /app
 
-# 安装项目依赖
-RUN pip install --no-cache-dir python-telegram-bot
+# 安装python-telegram-bot库
+RUN pip install python-telegram-bot telethon
 
-# 运行主程序
-CMD ["python", "main.py"]
+# 运行脚本
+CMD ["python", "./main1.py"]
